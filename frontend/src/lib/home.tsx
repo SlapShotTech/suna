@@ -57,8 +57,8 @@ export interface PricingTier {
 }
 
 export const siteConfig = {
-  name: 'Kortix Suna',
-  description: 'The Generalist AI Agent that can act on your behalf.',
+  name: 'AI Assistant',
+  description: 'An open source generalist AI agent that can act on your behalf.',
   cta: 'Start Free',
   url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
   keywords: ['AI Agent', 'Generalist AI', 'Open Source AI', 'Autonomous Agent'],
@@ -106,10 +106,10 @@ export const siteConfig = {
     ),
     badge: '100% OPEN SOURCE',
     githubUrl: 'https://github.com/kortix-ai/suna',
-    title: 'Suna, the AI Employee.',
+    title: 'Your AI Employee',
     description:
-      'Suna by Kortix – is a generalist AI Agent that acts on your behalf.',
-    inputPlaceholder: 'Ask Suna to...',
+      'An open source generalist AI agent that acts on your behalf.',
+    inputPlaceholder: 'Ask the assistant to...',
   },
   cloudPricingItems: [
     {

@@ -23,11 +23,17 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const supabase = createClient();
+  const disableAuth = process.env.NEXT_PUBLIC_DISABLE_AUTH === 'true';
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!disableAuth);
 
   useEffect(() => {
+    if (disableAuth) {
+      setIsLoading(false);
+      return;
+    }
+
     const getInitialSession = async () => {
       const {
         data: { session: currentSession },
@@ -43,8 +49,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       (_event, newSession) => {
         setSession(newSession);
         setUser(newSession?.user ?? null);
-        // No need to set loading state here as initial load is done
-        // and subsequent changes shouldn't show a loading state for the whole app
         if (isLoading) setIsLoading(false);
       },
     );
@@ -52,7 +56,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => {
       authListener?.subscription.unsubscribe();
     };
-  }, [supabase, isLoading]); // Added isLoading to dependencies to ensure it runs once after initial load completes
+  }, [supabase, isLoading, disableAuth]);
 
   const signOut = async () => {
     await supabase.auth.signOut();

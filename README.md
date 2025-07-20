@@ -120,6 +120,20 @@ python setup.py
 
 The wizard will guide you through 14 steps with progress saving, so you can resume if interrupted.
 
+For a simplified deployment that skips user authentication, set the following environment variable in `backend/.env` before starting the services:
+
+```sh
+DISABLE_AUTH=true
+```
+
+On the frontend, add the matching variable in `frontend/.env.local`:
+
+```sh
+NEXT_PUBLIC_DISABLE_AUTH=true
+```
+
+With these variables set, Suna runs in single-user mode and no sign up is required.
+
 3. **Start or stop the containers**:
 
 ```bash

@@ -197,6 +197,9 @@ class Configuration:
     REDIS_PORT: int = 6379
     REDIS_PASSWORD: Optional[str] = None
     REDIS_SSL: bool = True
+
+    # Disable authentication for simplified deployments
+    DISABLE_AUTH: bool = False
     
     # Daytona sandbox configuration
     DAYTONA_API_KEY: str
