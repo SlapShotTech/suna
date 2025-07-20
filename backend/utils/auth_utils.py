@@ -23,8 +23,11 @@ async def get_current_user_id_from_jwt(request: Request) -> str:
     Raises:
         HTTPException: If no valid token is found or if the token is invalid
     """
+    if config.DISABLE_AUTH:
+        return "anonymous"
+
     auth_header = request.headers.get('Authorization')
-    
+
     if not auth_header or not auth_header.startswith('Bearer '):
         raise HTTPException(
             status_code=401,
@@ -124,6 +127,9 @@ async def get_user_id_from_stream_auth(
         HTTPException: If no valid token is found or if the token is invalid
     """
     try:
+        if config.DISABLE_AUTH:
+            return "anonymous"
+
         # Try to get user_id from token in query param (for EventSource which can't set headers)
         if token:
             try:
@@ -243,8 +249,11 @@ async def get_optional_user_id(request: Request) -> Optional[str]:
     Returns:
         Optional[str]: The user ID extracted from the JWT, or None if no valid token
     """
+    if config.DISABLE_AUTH:
+        return "anonymous"
+
     auth_header = request.headers.get('Authorization')
-    
+
     if not auth_header or not auth_header.startswith('Bearer '):
         return None
     

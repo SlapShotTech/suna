@@ -221,8 +221,9 @@ NEXT_PUBLIC_ENV_MODE=LOCAL
 
 After completing the installation, you'll need to:
 
-1. **Create an account** - Use Supabase authentication to create your first account
-2. **Verify installations** - Check that all components are running correctly
+1. **Verify installations** - Check that all components are running correctly
+
+If you want to run Suna without user accounts, set `DISABLE_AUTH=true` in `backend/.env` and `NEXT_PUBLIC_DISABLE_AUTH=true` in `frontend/.env.local` before starting the containers. This enables a single-user mode with no authentication.
 
 ## Startup Options
 

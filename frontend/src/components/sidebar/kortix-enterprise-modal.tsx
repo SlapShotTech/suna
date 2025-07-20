@@ -11,7 +11,7 @@ import Image from 'next/image';
 import Cal, { getCalApi } from '@calcom/embed-react';
 import { useTheme } from 'next-themes';
 
-export function KortixProcessModal() {
+export function ProcessModal() {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const { resolvedTheme } = useTheme();
@@ -42,9 +42,9 @@ export function KortixProcessModal() {
               <div className="mb-8 mt-0 flex-shrink-0">
                 <Image
                   src={
-                    isDarkMode ? '/kortix-logo-white.svg' : '/kortix-logo.svg'
+                    isDarkMode ? '/logo-white.svg' : '/logo.svg'
                   }
-                  alt="Kortix Logo"
+                  alt="Logo"
                   width={60}
                   height={21}
                   className="h-6 w-auto"
